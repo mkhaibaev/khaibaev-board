@@ -94,7 +94,8 @@ document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e =
 document.querySelectorAll('input').forEach(i => i.addEventListener('input', () => i.closest('.q').classList.remove('bad')));
 document.getElementById('f').addEventListener('submit', async e => {
   e.preventDefault();
-  const v = {name: name.value.trim(), city: city.value.trim(), niche: niche.value.trim(), rev: pick.rev || '', team: pick.team || '', phone: phone.value.trim()};
+  const val = id => document.getElementById(id).value.trim();
+  const v = {name: val('name'), city: val('city'), niche: val('niche'), rev: pick.rev || '', team: pick.team || '', phone: val('phone')};
   let ok = true;
   for (const k of Object.keys(v)) {
     const bad = k === 'phone' ? v.phone.replace(/\D/g, '').length < 10 : !v[k];
